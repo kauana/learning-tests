@@ -35,6 +35,12 @@ class MarsRoverTest(unittest.TestCase):
         rover.change_direction("L")
         self.assertEqual(rover.get_direction(), "N")
 
+    def test_change_direction_invalid_side(self):
+        rover = MarsRover(3, 2, "N", 8, 8)
+        rover.change_direction("X")
+        self.assertEqual(rover.get_direction(), "N")
+
+
     def test_move_north(self):
         rover = MarsRover(3, 5, "N", 8, 8)
         rover.move()
@@ -76,6 +82,22 @@ class MarsRoverTest(unittest.TestCase):
         rover = MarsRover(4, 0, "S", 4, 8)
         rover.move()
         self.assertEqual(rover.get_y(), 0)
+
+    def test_explore(self):
+        rover = MarsRover(1, 2, "N", 5, 5)
+        rover.explore("LMLMLMLMMR")
+        self.assertEqual(rover.get_x(), 1)
+        self.assertEqual(rover.get_y(), 3)
+        self.assertEqual(rover.get_direction(), "E")
+
+    def test_explore_with_invalid_arguments(self):
+        rover = MarsRover(1, 2, "N", 5, 5)
+        rover.explore("POTATO")
+        self.assertEqual(rover.get_x(), 1)
+        self.assertEqual(rover.get_y(), 2)
+        self.assertEqual(rover.get_direction(), "N")
+
+
 
 
 

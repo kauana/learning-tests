@@ -23,7 +23,7 @@ class MarsRover:
                 "S": "W",
                 "W": "N",
             }.get(self.direction)
-        else:
+        elif side == "L":
             self.direction = {
                 "N": "W",
                 "W": "S",
@@ -40,6 +40,13 @@ class MarsRover:
             self.x += 1
         elif self.direction == "W" and self.x > 0:
             self.x -= 1
+
+    def explore(self, commands):
+        for c in commands:
+            if c == "R" or c == "L":
+                self.change_direction(c)
+            elif c == "M":
+                self.move()
 
 
 
